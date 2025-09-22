@@ -1,0 +1,7 @@
+
+{
+  "users": {
+    "1": { "id": "1", "username": "jane_smith", "displayName": "Jane Smith", "avatar": "https://i.pravatar.cc/150?u=user_456", "isOnline": true, "lastSeen": "2025-01-01T09:59:00.000Z" },
+    "2": { "id": "2", "username": "john_doe", "displayName": "John Doe", "avatar": "https://i.pravatar.cc/150?u=user_123", "isOnline": false, "lastSeen": "2025-01-01T08:00:00.000Z" }
+  }
+}

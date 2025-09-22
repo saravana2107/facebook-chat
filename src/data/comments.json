@@ -1,0 +1,19 @@
+
+{
+  "comments": {
+    "comment_seed": {
+      "id": "comment_seed",
+      "parentId": null,
+      "authorId": "1",
+      "content": "Welcome to the thread! @john_doe",
+      "timestamp": "2025-01-01T10:00:00.000Z",
+      "attachments": [],
+      "reactions": { "👍": ["user_123"] },
+      "mentions": ["user_123"],
+      "isEdited": false,
+      "editedAt": null,
+      "replies": []
+    }
+  },
+  "metadata": { "totalComments": 1, "lastUpdated": "2025-01-01T10:00:00.000Z" }
+}

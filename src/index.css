@@ -1,1 +1,42 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand-50: #eef3f6;
+  --color-brand-100: #d9e3ea;
+  --color-brand-200: #b7c8d6;
+  --color-brand-300: #8aa5bb;
+  --color-brand-400: #5f819f;
+  --color-brand-500: #3b5d83;
+  --color-brand-600: #2f4c6c;
+  --color-brand-700: #273f5a;
+  --color-brand-800: #253241;
+  --color-brand-900: #1a2635;
+  --color-comment-background: #f0f2f5;
+
+  --font-sans: "Inter", system-ui, ui-sans-serif, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+.filter-bright:not(:disabled) {
+  filter: invert(19%) sepia(70%) saturate(5671%) hue-rotate(203deg)
+    brightness(96%) contrast(101%);
+}
+
+:root {
+  color-scheme: light;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  @apply bg-white text-gray-900 antialiased font-sans;
+}
+.card {
+  @apply bg-comment-background border border-gray-200 rounded-xl p-3;
+}
+
+textarea {
+  outline: 0;
+}
