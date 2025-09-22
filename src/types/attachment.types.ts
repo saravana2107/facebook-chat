@@ -13,7 +13,6 @@ export interface Attachment {
   size: number;
   uploadedBy: string;
   uploadedAt: string;
-  metadata?: AttachmentMeta;
 }
 
 export interface AttachmentDB {

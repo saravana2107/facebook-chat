@@ -17,14 +17,8 @@ export interface Comment {
   isDeleted?: boolean;
 }
 
-export interface CommentStateMeta {
-  totalComments: number;
-  lastUpdated: string;
-}
-
 export interface CommentDB {
   comments: Record<string, Comment>;
-  metadata: CommentStateMeta;
   attachments: Record<string, Attachment>;
 }
 

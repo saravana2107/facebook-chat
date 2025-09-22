@@ -31,7 +31,6 @@ export const useCommentsStore = create<State>()(
     immer((set) => ({
       db: {
         comments: {},
-        metadata: { totalComments: 0, lastUpdated: formatISO(new Date()) },
         attachments: {},
       },
       load: () =>
@@ -64,10 +63,6 @@ export const useCommentsStore = create<State>()(
           };
           s.db.comments[id] = c;
           if (parentId) s.db.comments[parentId]?.replies.push(id);
-          s.db.metadata.totalComments = Object.values(s.db.comments).filter(
-            (x) => !x.isDeleted,
-          ).length;
-          s.db.metadata.lastUpdated = now;
           if (attachments.length) {
             s.db.attachments = {
               ...s.db.attachments,
@@ -91,7 +86,6 @@ export const useCommentsStore = create<State>()(
           c.content = content;
           c.isEdited = true;
           c.editedAt = formatISO(new Date());
-          s.db.metadata.lastUpdated = c.editedAt!;
 
           if (attachments.length) {
             const attachmentIds = attachments.map((a) => a.id);
@@ -116,10 +110,6 @@ export const useCommentsStore = create<State>()(
           const c = s.db.comments[id];
           if (!c) return;
           c.isDeleted = true;
-          s.db.metadata.totalComments = Object.values(s.db.comments).filter(
-            (x) => !x.isDeleted,
-          ).length;
-          s.db.metadata.lastUpdated = formatISO(new Date());
           storage.saveComments(s.db);
         }),
       toggleReaction: (id: string, userId: string, emoji?: string) =>

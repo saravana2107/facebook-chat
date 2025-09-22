@@ -25,7 +25,6 @@ function StoreProbe() {
   const db = useCommentsStore((s) => s.db);
   return (
     <div>
-      <div data-testid="total">{db.metadata.totalComments}</div>
       <div data-testid="comments-json">{JSON.stringify(db.comments)}</div>
       <div data-testid="attachments-json">{JSON.stringify(db.attachments)}</div>
     </div>
@@ -38,7 +37,6 @@ const resetStore = () => {
     ...state,
     db: {
       comments: {},
-      metadata: { totalComments: 0, lastUpdated: new Date().toISOString() },
       attachments: {},
     },
   });
@@ -72,7 +70,6 @@ describe("useCommentsStore + RTL", () => {
           replies: [],
         },
       },
-      metadata: { totalComments: 1, lastUpdated: "2020-01-01T00:00:00.000Z" },
       attachments: {},
     };
 
@@ -86,7 +83,6 @@ describe("useCommentsStore + RTL", () => {
       useCommentsStore.getState().load();
     });
 
-    expect(screen.getByTestId("total").textContent).toBe("1");
     const comments = JSON.parse(
       screen.getByTestId("comments-json").textContent || "{}"
     );
@@ -105,7 +101,6 @@ describe("useCommentsStore + RTL", () => {
     });
 
     expect(id).toBe("comment_1111");
-    expect(screen.getByTestId("total").textContent).toBe("1");
 
     const comments = JSON.parse(
       screen.getByTestId("comments-json").textContent || "{}"
@@ -135,7 +130,6 @@ describe("useCommentsStore + RTL", () => {
       screen.getByTestId("comments-json").textContent || "{}"
     );
     expect(comments[parentId].replies).toEqual([childId]);
-    expect(screen.getByTestId("total").textContent).toBe("2");
   });
 
   it("adds with attachments and stores them in DB", () => {
@@ -244,34 +238,6 @@ describe("useCommentsStore + RTL", () => {
       useCommentsStore.getState().editComment(id, "after delete", []);
     });
     expect(storage.saveComments).not.toHaveBeenCalled();
-  });
-
-  it("deletes a comment (soft delete) and updates totals", () => {
-    render(<StoreProbe />);
-
-    let a = "",
-      b = "";
-    act(() => {
-      a = useCommentsStore
-        .getState()
-        .addComment({ currentUserId: "u", content: "A" });
-      b = useCommentsStore
-        .getState()
-        .addComment({ currentUserId: "u", content: "B" });
-    });
-
-    expect(screen.getByTestId("total").textContent).toBe("2");
-
-    act(() => {
-      useCommentsStore.getState().deleteComment(a);
-    });
-
-    const comments = JSON.parse(
-      screen.getByTestId("comments-json").textContent || "{}"
-    );
-    expect(comments[a].isDeleted).toBe(true);
-    expect(screen.getByTestId("total").textContent).toBe("1");
-    expect(storage.saveComments).toHaveBeenCalledTimes(3);
   });
 
   describe("toggleReaction — one reaction per user per comment", () => {
