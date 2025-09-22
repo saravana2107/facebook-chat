@@ -1,14 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act } from "@testing-library/react";
 import { useCommentsStore } from "../commentsStore";
-import { storage } from "../../services/storageService";
 import type { Attachment } from "../../services/commentService";
-
-vi.mock("../../services/storageService", () => ({
-  storage: {
-    saveComments: vi.fn(),
-  },
-}));
 
 let uuidCalls = 0;
 vi.mock("uuid", () => ({
@@ -64,10 +57,9 @@ describe("useCommentsStore + RTL", () => {
     expect(id).toBe("comment_1111");
 
     const comments = JSON.parse(
-      screen.getByTestId("comments-json").textContent || "{}"
+      screen.getByTestId("comments-json").textContent || "{}",
     );
     expect(comments[id].content).toBe("first post");
-    expect(storage.saveComments).toHaveBeenCalledTimes(1);
   });
 
   it("adds a reply and links to parent", () => {
@@ -88,7 +80,7 @@ describe("useCommentsStore + RTL", () => {
     });
 
     const comments = JSON.parse(
-      screen.getByTestId("comments-json").textContent || "{}"
+      screen.getByTestId("comments-json").textContent || "{}",
     );
     expect(comments[parentId].replies).toEqual([childId]);
   });
@@ -129,12 +121,12 @@ describe("useCommentsStore + RTL", () => {
     });
 
     const comments = JSON.parse(
-      screen.getByTestId("comments-json").textContent || "{}"
+      screen.getByTestId("comments-json").textContent || "{}",
     );
     expect(comments[id].attachments).toEqual(["a1", "a2"]);
 
     const attachments = JSON.parse(
-      screen.getByTestId("attachments-json").textContent || "{}"
+      screen.getByTestId("attachments-json").textContent || "{}",
     );
     expect(Object.keys(attachments)).toEqual(["a1", "a2"]);
   });
@@ -168,14 +160,13 @@ describe("useCommentsStore + RTL", () => {
     });
 
     const comments = JSON.parse(
-      screen.getByTestId("comments-json").textContent || "{}"
+      screen.getByTestId("comments-json").textContent || "{}",
     );
     const edited = comments[id];
 
     expect(edited.content).toBe("new content");
     expect(edited.isEdited).toBe(true);
     expect(edited.attachments).toEqual(["a1"]);
-    expect(storage.saveComments).toHaveBeenCalledTimes(2);
   });
 
   it("editComment on missing/deleted comment is a no-op", () => {
@@ -184,7 +175,6 @@ describe("useCommentsStore + RTL", () => {
     act(() => {
       useCommentsStore.getState().editComment("nope", "x", []);
     });
-    expect(storage.saveComments).not.toHaveBeenCalled();
 
     let id = "";
     act(() => {
@@ -198,7 +188,6 @@ describe("useCommentsStore + RTL", () => {
     act(() => {
       useCommentsStore.getState().editComment(id, "after delete", []);
     });
-    expect(storage.saveComments).not.toHaveBeenCalled();
   });
 
   describe("toggleReaction — one reaction per user per comment", () => {
@@ -213,10 +202,9 @@ describe("useCommentsStore + RTL", () => {
       });
 
       const comments = JSON.parse(
-        screen.getByTestId("comments-json").textContent || "{}"
+        screen.getByTestId("comments-json").textContent || "{}",
       );
       expect(comments[id].reactions).toEqual({ "👍": ["userA"] });
-      expect(storage.saveComments).toHaveBeenCalledTimes(2);
     });
 
     it("switches emoji if clicking a different one", () => {
@@ -231,7 +219,7 @@ describe("useCommentsStore + RTL", () => {
       });
 
       const comments = JSON.parse(
-        screen.getByTestId("comments-json").textContent || "{}"
+        screen.getByTestId("comments-json").textContent || "{}",
       );
       expect(comments[id].reactions).toEqual({ "❤️": ["userA"] });
     });
@@ -248,7 +236,7 @@ describe("useCommentsStore + RTL", () => {
       });
 
       const comments = JSON.parse(
-        screen.getByTestId("comments-json").textContent || "{}"
+        screen.getByTestId("comments-json").textContent || "{}",
       );
       expect(comments[id].reactions).toEqual({});
     });
@@ -265,7 +253,7 @@ describe("useCommentsStore + RTL", () => {
       });
 
       const comments = JSON.parse(
-        screen.getByTestId("comments-json").textContent || "{}"
+        screen.getByTestId("comments-json").textContent || "{}",
       );
       expect(comments[id].reactions).toEqual({});
     });
@@ -276,7 +264,6 @@ describe("useCommentsStore + RTL", () => {
       act(() => {
         useCommentsStore.getState().toggleReaction("nope", "u", "👍");
       });
-      expect(storage.saveComments).not.toHaveBeenCalled();
 
       let id = "";
       act(() => {
@@ -290,7 +277,6 @@ describe("useCommentsStore + RTL", () => {
       act(() => {
         useCommentsStore.getState().toggleReaction(id, "u2", "👍");
       });
-      expect(storage.saveComments).not.toHaveBeenCalled();
     });
   });
 });

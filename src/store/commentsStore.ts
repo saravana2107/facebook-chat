@@ -2,7 +2,6 @@ import { create } from "zustand";
 import { v4 as uuid } from "uuid";
 import { formatISO } from "date-fns";
 import type { Comment, CommentDB } from "../types/comment.types";
-import { storage } from "../services/storageService";
 import { immer } from "zustand/middleware/immer";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { Attachment } from "../services/commentService";
@@ -69,7 +68,6 @@ export const useCommentsStore = create<State>()(
               ),
             };
           }
-          storage.saveComments(s.db);
         });
         return id;
       },
@@ -97,14 +95,12 @@ export const useCommentsStore = create<State>()(
           } else {
             c.attachments = [];
           }
-          storage.saveComments(s.db);
         }),
       deleteComment: (id) =>
         set((s) => {
           const c = s.db.comments[id];
           if (!c) return;
           c.isDeleted = true;
-          storage.saveComments(s.db);
         }),
       toggleReaction: (id: string, userId: string, emoji?: string) =>
         set((state) => {
@@ -160,8 +156,6 @@ export const useCommentsStore = create<State>()(
             },
           };
 
-          // persist
-          storage.saveComments(next.db);
           return next;
         }),
     })),

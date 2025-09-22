@@ -24,13 +24,11 @@ export async function createComment({
   mentions?: string[];
   currentUserId: string;
 }) {
-  return useCommentsStore
-    .getState()
-    .addComment({
-      parentId: parentId ?? null,
-      content,
-      attachments,
-      currentUserId,
-      mentions,
-    });
+  return useCommentsStore.getState().addComment({
+    parentId: parentId ?? null,
+    content,
+    attachments,
+    currentUserId,
+    mentions,
+  });
 }

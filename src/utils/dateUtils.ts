@@ -1,5 +1,4 @@
 import { formatDistanceToNowStrict } from "date-fns";
-export const iso = (d = new Date()) => d.toISOString();
 
 /**
  * Format date in compact form like "5m", "2h", "3d"
