@@ -1,69 +1,79 @@
-# React + TypeScript + Vite
+Facebook Comment Form (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Facebook-style comment form built with React, TypeScript, and Vite.
+This project demonstrates modern React best practices including hooks, state management, and component composition.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+💬 Comment form with input box and submit button
 
-## Expanding the ESLint configuration
+🧵 Threaded replies (nested comment support)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+😀 Emoji reactions (like Facebook reactions)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+📎 File/image attachments
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🔔 User tagging (@mentions)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🕒 Relative timestamps (e.g., 2m ago, 3h ago)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🗑️ Edit & delete actions via dropdown
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🛠️ Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React 18 – UI framework
+
+TypeScript – Strongly typed JavaScript
+
+Vite – Fast build tool and dev server
+
+TailwindCSS – Utility-first CSS framework (optional, if you used it)
+
+Zustand – Lightweight state management (if you used it)
+
+date-fns – Date formatting utilities
+
+📂 Project Structure
+.
+├── src
+│   ├── components      # Reusable UI components
+│   │   ├── Comment.tsx
+│   │   ├── CommentForm.tsx
+│   │   ├── ReactionBar.tsx
+│   │   └── ReplyThread.tsx
+│   ├── store           # Zustand or context store
+│   ├── utils           # Helpers (e.g., date formatting)
+│   ├── App.tsx         # Root component
+│   └── main.tsx        # Entry point
+├── index.html
+├── tsconfig.json
+├── vite.config.ts
+└── package.json
+
+⚡ Getting Started
+1. Clone the repo
+git clone https://github.com/saravana2107/facebook-chat.git
+cd facebook-chat
+
+2. Install dependencies
+npm install
+
+3. Run the development server
+npm run dev
+
+4. Build for production
+npm run build
+
+🔧 Available Scripts
+
+dev – Start development server with HMR
+
+build – Build production bundle
+
+preview – Preview production build locally
+
+lint – Run linter (if configured)
+
+test – Run unit tests (if added)
+
+deploy - Run deployment script to deploy the changes to github pages
