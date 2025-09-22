@@ -3,9 +3,9 @@ export const iso = (d = new Date()) => d.toISOString();
 
 /**
  * Format date in compact form like "5m", "2h", "3d"
- * 
- * @param date 
- * @returns 
+ *
+ * @param date
+ * @returns
  */
 export function formatCompact(date: Date) {
   const result = formatDistanceToNowStrict(date, { unit: "minute" });

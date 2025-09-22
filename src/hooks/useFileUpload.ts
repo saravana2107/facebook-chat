@@ -49,7 +49,7 @@ export function useFileUpload({
         reader.readAsDataURL(file);
       });
     },
-    [maxSizeMB, onFiles, currentUserId]
+    [maxSizeMB, onFiles, currentUserId],
   );
   const dz = useDropzone({ onDrop, accept: { "image/*": [] } });
   return { ...dz, error };

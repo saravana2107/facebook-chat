@@ -81,7 +81,9 @@ export function CommentView({
             <LikeButton
               commentId={c.id}
               userId={usersArr[0].id}
-              onReact={(emoji) => toggleReaction(c.id, usersArr[0].id, emoji || undefined)}
+              onReact={(emoji) =>
+                toggleReaction(c.id, usersArr[0].id, emoji || undefined)
+              }
             />
             <button
               className="inline-flex cursor-pointer items-center gap-1 text-gray-600 hover:text-gray-900"
@@ -133,8 +135,8 @@ function LikeButton({
     if (c) {
       setSelected(
         Object.entries(c.reactions).find(([, list]) =>
-          list.includes(userId)
-        )?.[0] || null
+          list.includes(userId),
+        )?.[0] || null,
       );
     }
   }, [c, userId]);
@@ -255,7 +257,7 @@ function CommentActionsMenu({
   useEffect(() => {
     if (!open) return;
     const first = menuRef.current?.querySelector<HTMLElement>(
-      '[data-menuitem="1"]'
+      '[data-menuitem="1"]',
     );
     first?.focus();
   }, [open]);

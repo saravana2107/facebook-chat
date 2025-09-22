@@ -19,7 +19,11 @@ interface State {
   }) => string;
   editComment: (id: string, content: string, files: Attachment[]) => void;
   deleteComment: (id: string) => void;
-  toggleReaction: (id: string, userId: string, emoji: string | undefined) => void;
+  toggleReaction: (
+    id: string,
+    userId: string,
+    emoji: string | undefined,
+  ) => void;
 }
 
 export const useCommentsStore = create<State>()(
@@ -61,16 +65,19 @@ export const useCommentsStore = create<State>()(
           s.db.comments[id] = c;
           if (parentId) s.db.comments[parentId]?.replies.push(id);
           s.db.metadata.totalComments = Object.values(s.db.comments).filter(
-            (x) => !x.isDeleted
+            (x) => !x.isDeleted,
           ).length;
           s.db.metadata.lastUpdated = now;
           if (attachments.length) {
             s.db.attachments = {
               ...s.db.attachments,
-              ...attachments.reduce((acc, a) => {
-                acc[a.id] = a;
-                return acc;
-              }, {} as Record<string, Attachment>),
+              ...attachments.reduce(
+                (acc, a) => {
+                  acc[a.id] = a;
+                  return acc;
+                },
+                {} as Record<string, Attachment>,
+              ),
             };
           }
           storage.saveComments(s.db);
@@ -91,10 +98,13 @@ export const useCommentsStore = create<State>()(
             c.attachments = attachmentIds;
             s.db.attachments = {
               ...s.db.attachments,
-              ...attachments.reduce((acc, a) => {
-                acc[a.id] = a;
-                return acc;
-              }, {} as Record<string, Attachment>),
+              ...attachments.reduce(
+                (acc, a) => {
+                  acc[a.id] = a;
+                  return acc;
+                },
+                {} as Record<string, Attachment>,
+              ),
             };
           } else {
             c.attachments = [];
@@ -107,7 +117,7 @@ export const useCommentsStore = create<State>()(
           if (!c) return;
           c.isDeleted = true;
           s.db.metadata.totalComments = Object.values(s.db.comments).filter(
-            (x) => !x.isDeleted
+            (x) => !x.isDeleted,
           ).length;
           s.db.metadata.lastUpdated = formatISO(new Date());
           storage.saveComments(s.db);
@@ -121,7 +131,7 @@ export const useCommentsStore = create<State>()(
           const reactions = c.reactions ?? {};
 
           const currentEmoji = Object.keys(reactions).find((e) =>
-            reactions[e]?.includes(uid)
+            reactions[e]?.includes(uid),
           );
 
           const newReactions: Record<string, string[]> = {};
@@ -174,6 +184,6 @@ export const useCommentsStore = create<State>()(
     {
       name: "comments-storage",
       storage: createJSONStorage(() => localStorage),
-    }
-  )
+    },
+  ),
 );

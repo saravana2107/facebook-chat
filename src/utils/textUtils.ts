@@ -1,1 +1,3 @@
-export function sanitize(input: string) { return input }
+export function sanitize(input: string) {
+  return input;
+}

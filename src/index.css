@@ -13,8 +13,7 @@
   --color-brand-900: #1a2635;
   --color-comment-background: #f0f2f5;
 
-  --font-sans: "Inter", system-ui, ui-sans-serif, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
+  --font-sans: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .filter-bright:not(:disabled) {

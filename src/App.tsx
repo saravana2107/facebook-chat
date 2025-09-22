@@ -1,5 +1,4 @@
-
-import { ChatContainer } from './components/Chat'
+import { ChatContainer } from "./components/Chat";
 
 export default function App() {
   return (
@@ -13,5 +12,5 @@ export default function App() {
         <ChatContainer />
       </main>
     </div>
-  )
+  );
 }
