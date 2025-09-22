@@ -81,7 +81,7 @@ export function CommentView({
             <LikeButton
               commentId={c.id}
               userId={usersArr[0].id}
-              onReact={(emoji) => toggleReaction(c.id, usersArr[0].id, emoji)}
+              onReact={(emoji) => toggleReaction(c.id, usersArr[0].id, emoji || undefined)}
             />
             <button
               className="inline-flex cursor-pointer items-center gap-1 text-gray-600 hover:text-gray-900"

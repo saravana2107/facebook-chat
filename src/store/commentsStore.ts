@@ -19,7 +19,7 @@ interface State {
   }) => string;
   editComment: (id: string, content: string, files: Attachment[]) => void;
   deleteComment: (id: string) => void;
-  toggleReaction: (id: string, userId: string, emoji: string | null) => void;
+  toggleReaction: (id: string, userId: string, emoji: string | undefined) => void;
 }
 
 export const useCommentsStore = create<State>()(
