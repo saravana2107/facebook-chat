@@ -5,11 +5,10 @@ import type { Comment, CommentDB } from "../types/comment.types";
 import { storage } from "../services/storageService";
 import { immer } from "zustand/middleware/immer";
 import { createJSONStorage, persist } from "zustand/middleware";
-import type { Attachment } from "../types/attachment.types";
+import type { Attachment } from "../services/commentService";
 
 interface State {
   db: CommentDB;
-  load: () => void;
   addComment: (data: {
     currentUserId: string;
     parentId?: string | null;
@@ -33,11 +32,6 @@ export const useCommentsStore = create<State>()(
         comments: {},
         attachments: {},
       },
-      load: () =>
-        set((s) => {
-          const db = storage.loadComments();
-          if (db) s.db = db;
-        }),
       addComment: ({
         parentId = null,
         content,

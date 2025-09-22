@@ -3,10 +3,9 @@ import { MentionsInput, Mention } from "react-mentions";
 import Picker from "emoji-picker-react";
 import { useFileUpload } from "../../hooks/useFileUpload";
 import { useCommentsStore } from "../../store/commentsStore";
-import { createComment } from "../../services/commentService";
+import { createComment, type Attachment } from "../../services/commentService";
 import { getUsers } from "../../services/userService";
 import { Button } from "../UI/Button";
-import type { Attachment } from "../../types/attachment.types";
 
 interface Props {
   parentId?: string;

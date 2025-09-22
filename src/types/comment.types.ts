@@ -1,6 +1,4 @@
-import type { Attachment } from "./attachment.types";
-
-export type ReactionMap = Record<string, string[]>;
+import type { Attachment } from "../services/commentService";
 
 export interface Comment {
   id: string;
@@ -9,7 +7,7 @@ export interface Comment {
   content: string;
   timestamp: string;
   attachments: string[];
-  reactions: ReactionMap;
+  reactions: Record<string, string[]>;
   mentions: string[];
   isEdited: boolean;
   editedAt: string | null;
@@ -20,11 +18,4 @@ export interface Comment {
 export interface CommentDB {
   comments: Record<string, Comment>;
   attachments: Record<string, Attachment>;
-}
-
-export interface CreateCommentData {
-  parentId?: string;
-  content: string;
-  attachments?: File[];
-  mentions?: string[];
 }

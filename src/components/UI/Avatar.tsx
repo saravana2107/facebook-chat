@@ -1,4 +1,5 @@
-import type { User } from "../../types/user.types";
+import type { User } from "../../services/userService";
+
 export function Avatar({ user, size = 36 }: { user: User; size?: number }) {
   return (
     <img

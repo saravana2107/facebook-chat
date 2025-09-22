@@ -2,7 +2,7 @@ import { formatISO } from "date-fns";
 import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { v4 as uuid } from "uuid";
-import type { Attachment } from "../types/attachment.types";
+import type { Attachment } from "../services/commentService";
 
 export function useFileUpload({
   maxSizeMB = 10,

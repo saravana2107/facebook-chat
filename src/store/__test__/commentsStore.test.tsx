@@ -1,14 +1,11 @@
-import React from "react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act } from "@testing-library/react";
 import { useCommentsStore } from "../commentsStore";
 import { storage } from "../../services/storageService";
-import type { CommentDB } from "../../types/comment.types";
-import type { Attachment } from "../../types/attachment.types";
+import type { Attachment } from "../../services/commentService";
 
 vi.mock("../../services/storageService", () => ({
   storage: {
-    loadComments: vi.fn(),
     saveComments: vi.fn(),
   },
 }));
@@ -51,42 +48,6 @@ describe("useCommentsStore + RTL", () => {
 
   afterEach(() => {
     vi.clearAllMocks();
-  });
-
-  it("loads DB from storage", () => {
-    const mockDb: CommentDB = {
-      comments: {
-        comment_legacy: {
-          id: "comment_legacy",
-          parentId: null,
-          authorId: "u1",
-          content: "hello",
-          timestamp: "2020-01-01T00:00:00.000Z",
-          attachments: [],
-          reactions: {},
-          mentions: [],
-          isEdited: false,
-          editedAt: null,
-          replies: [],
-        },
-      },
-      attachments: {},
-    };
-
-    (
-      storage.loadComments as unknown as ReturnType<typeof vi.fn>
-    ).mockReturnValue(mockDb);
-
-    render(<StoreProbe />);
-
-    act(() => {
-      useCommentsStore.getState().load();
-    });
-
-    const comments = JSON.parse(
-      screen.getByTestId("comments-json").textContent || "{}"
-    );
-    expect(comments.comment_legacy.content).toBe("hello");
   });
 
   it("adds a root comment and persists", () => {

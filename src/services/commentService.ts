@@ -1,5 +1,15 @@
 import { useCommentsStore } from "../store/commentsStore";
-import type { Attachment } from "../types/attachment.types";
+
+export interface Attachment {
+  id: string;
+  filename: string;
+  originalName: string;
+  path: string;
+  type: string;
+  size: number;
+  uploadedBy: string;
+  uploadedAt: string;
+}
 
 export async function createComment({
   parentId,
