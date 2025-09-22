@@ -39,3 +39,19 @@ body {
 textarea {
   outline: 0;
 }
+
+.mention-input ul {
+  @apply bg-white border border-gray-300 rounded-md shadow-lg;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.mention-input li {
+  @apply px-3 py-1 cursor-pointer hover:bg-gray-100;
+}

@@ -58,7 +58,7 @@ export function CommentForm({
     onCancel?.();
   }, [content, editId, edit, files, parentId, users, onCancel]);
 
-  const safeMarkup = "[__display__]";
+  const safeMarkup = "[@__display__]";
 
   useEffect(() => {
     const el = inputRef.current;
@@ -80,7 +80,7 @@ export function CommentForm({
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder={`Comment as ${users[0].displayName}`}
-          className="w-full text-sm"
+          className="w-full text-sm mention-input"
           style={{
             control: { background: "transparent" },
             highlighter: { padding: 8 },

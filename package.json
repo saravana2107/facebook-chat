@@ -1,7 +1,7 @@
 {
-  "name": "facebook-chat-challenge",
+  "name": "facebook-chat",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "homepage": "https://saravana2107.github.io/facebook-chat",
   "scripts": {
@@ -9,6 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "pretest": "npm run prettier && npm run lint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "test": "vitest --watch=false",
