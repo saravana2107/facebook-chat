@@ -2,6 +2,10 @@ import { useComments } from "../../hooks/useComments";
 import { CommentList } from "./CommentList";
 import { CommentForm } from "./CommentForm";
 
+/**
+ * ChatContainer component
+ * @returns JSX.Element
+ */
 export function ChatContainer() {
   const { db } = useComments();
   const roots = Object.values(db.comments)

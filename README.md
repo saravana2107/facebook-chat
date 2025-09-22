@@ -22,8 +22,8 @@ This project demonstrates modern React best practices including hooks, state man
 - **React 18** – UI framework
 - **TypeScript** – Strongly typed JavaScript
 - **Vite** – Fast build tool and dev server
-- **TailwindCSS** – Utility-first CSS framework (if used)
-- **Zustand** – Lightweight state management (if used)
+- **TailwindCSS** – Utility-first CSS framework
+- **Zustand** – Lightweight state management
 - **date-fns** – Date formatting utilities
 
 ---
@@ -91,8 +91,8 @@ npm run build
 - `dev` – Start development server with HMR
 - `build` – Build production bundle
 - `preview` – Preview production build locally
-- `lint` – Run linter (if configured)
-- `test` – Run unit tests (if added)
+- `lint` – Run linter
+- `test` – Run unit tests
 - `deploy` – Deploy to github pages
 
 ---

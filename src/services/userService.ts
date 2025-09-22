@@ -9,6 +9,10 @@ export interface User {
   lastSeen: string;
 }
 
+/**
+ * Retrieves the list of users
+ * @returns {Record<string, User>} - A record of users
+ */
 export function getUsers(): Record<string, User> {
   return Users.users;
 }

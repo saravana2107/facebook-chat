@@ -7,7 +7,18 @@ import { createComment, type Attachment } from "../../services/commentService";
 import { getUsers } from "../../services/userService";
 import { Button } from "../UI/Button";
 
-interface Props {
+/**
+ * CommentForm component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
+export function CommentForm({
+  parentId,
+  onCancel,
+  initialContent = "",
+  editId,
+  attachments,
+}: {
   parentId?: string;
   placeholder?: string;
   onCancel?: () => void;
@@ -15,15 +26,7 @@ interface Props {
   initialContent?: string;
   editId?: string;
   attachments?: Attachment[];
-}
-
-export function CommentForm({
-  parentId,
-  onCancel,
-  initialContent = "",
-  editId,
-  attachments,
-}: Props) {
+}) {
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const [content, setContent] = useState(initialContent);
   const [files, setFiles] = useState<Attachment[]>(attachments || []);

@@ -4,6 +4,11 @@ import { useDropzone } from "react-dropzone";
 import { v4 as uuid } from "uuid";
 import type { Attachment } from "../services/commentService";
 
+/**
+ * Custom hook to handle file uploads
+ * @param props - Configuration options for the file upload
+ * @returns {Object} - File upload state and handlers
+ */
 export function useFileUpload({
   maxSizeMB = 10,
   onFiles,

@@ -1,4 +1,10 @@
 import type { ButtonHTMLAttributes } from "react";
+
+/**
+ * Button component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 export function Button({
   className = "",
   ...props

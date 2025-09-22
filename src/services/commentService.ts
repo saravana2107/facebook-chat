@@ -11,6 +11,11 @@ export interface Attachment {
   uploadedAt: string;
 }
 
+/**
+ * Creates a new comment
+ * @param props - Comment data
+ * @returns Promise resolving to the created comment
+ */
 export async function createComment({
   parentId,
   content,

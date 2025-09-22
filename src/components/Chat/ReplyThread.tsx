@@ -2,6 +2,11 @@ import { useState } from "react";
 import { useCommentsStore } from "../../store/commentsStore";
 import { CommentView } from "./Comment";
 
+/**
+ * ReplyThread component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 export function ReplyThread({
   commentId,
   level,

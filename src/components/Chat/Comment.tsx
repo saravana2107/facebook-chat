@@ -4,6 +4,11 @@ import { getUsers } from "../../services/userService";
 import { CommentForm } from "./CommentForm";
 import { formatCompact } from "../../utils/dateUtils";
 
+/**
+ * CommentView component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 export function CommentView({
   commentId,
 }: {
@@ -108,6 +113,11 @@ export function CommentView({
   );
 }
 
+/**
+ * LikeButton component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 function LikeButton({
   commentId,
   onReact,
@@ -182,6 +192,11 @@ function LikeButton({
   );
 }
 
+/**
+ * ReactionBar component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 function ReactionBar({ commentId }: { commentId: string }) {
   const c = useCommentsStore((s) => s.db.comments[commentId]);
   if (!c) return null;
@@ -205,6 +220,11 @@ function ReactionBar({ commentId }: { commentId: string }) {
   );
 }
 
+/**
+ * AttachmentPreview component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 function AttachmentPreview({ id }: { id: string }) {
   const attachments = useCommentsStore((s) => s.db.attachments);
 
@@ -222,6 +242,11 @@ function AttachmentPreview({ id }: { id: string }) {
   );
 }
 
+/**
+ * CommentActionsMenu component
+ * @param props - Props for the component
+ * @returns JSX.Element
+ */
 function CommentActionsMenu({
   canEdit = true,
   onEdit,

@@ -5,6 +5,7 @@ import type { Comment, CommentDB } from "../types/comment.types";
 import { immer } from "zustand/middleware/immer";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { Attachment } from "../services/commentService";
+import Comments from "../data/comments.json";
 
 interface State {
   db: CommentDB;
@@ -24,11 +25,14 @@ interface State {
   ) => void;
 }
 
+/**
+ * Comment store for managing comments in the application
+ */
 export const useCommentsStore = create<State>()(
   persist(
     immer((set) => ({
       db: {
-        comments: {},
+        comments: Comments.comments,
         attachments: {},
       },
       addComment: ({

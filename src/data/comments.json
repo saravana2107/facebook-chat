@@ -7,8 +7,8 @@
       "content": "Welcome to the thread! @john_doe",
       "timestamp": "2025-01-01T10:00:00.000Z",
       "attachments": [],
-      "reactions": { "👍": ["user_123"] },
-      "mentions": ["user_123"],
+      "reactions": { "👍": ["1"] },
+      "mentions": ["1"],
       "isEdited": false,
       "editedAt": null,
       "replies": []
